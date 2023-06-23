@@ -3,18 +3,19 @@ class Population extends Array
     generations = 0;
     _finished = false;
     _mating_pool = [];
-    _perfect_score = 1;
-    _best = '';
+    _best = null;
 
-    constructor(target, mutation_rate, size)
+    constructor(max_generations, mutation_rate, size)
     {
         super(size);
 
-        this._target = target;
+        this._max_generations = max_generations;
         this._mutation_rate = mutation_rate;
 
+        this._cargo = Cargo.generateCargo();
+
         for(let i = 0; i < size; i++) {
-            this[i] = new DNA(target.length);
+            this[i] = new DNA(this._cargo.length);
         }
 
         this.calculateFitness();
@@ -22,25 +23,25 @@ class Population extends Array
 
     calculateFitness()
     {
-        this.forEach(dna => dna.calculateFitness(this._target));
+        this.forEach(dna => dna.calculateFitness(this._cargo));
     }
 
     naturalSelection()
     {
         this._mating_pool = [];
-        const total_fitness = this.reduce((carry, dna) => carry + dna._fitness , 0);
+        const total_fitness = this.reduce((carry, dna) => carry + dna.getFitness() , 0);
 
         this.forEach((dna, index) => {
-            if(dna._fitness != 0) {
+            if(dna.getFitness() != 0) {
                 if(this._mating_pool.length === 0) {
                     this._mating_pool.push({
                         dna,
-                        prob: dna._fitness / total_fitness
+                        prob: dna.getFitness() / total_fitness
                     });
                 } else {
                     this._mating_pool.push({
                         dna,
-                        prob: Math.min(this._mating_pool.at(-1).prob + (dna._fitness / total_fitness), 1)
+                        prob: Math.min(this._mating_pool.at(-1).prob + (dna.getFitness() / total_fitness), 1)
                     });
                 }
             }
@@ -50,9 +51,6 @@ class Population extends Array
     generate()
     {
         this.forEach((dna, index) => {
-            // const partner_a = this._mating_pool[Math.floor(Math.random() * this._mating_pool.length)];
-            // const partner_b = this._mating_pool[Math.floor(Math.random() * this._mating_pool.length)];
-
             let random_pick = Math.random();
             const partner_a = this._mating_pool.find(function (area) {
                 return area.prob >= random_pick;
@@ -77,12 +75,12 @@ class Population extends Array
         let max_fitness = 0;
 
         this.forEach((dna) => {
-            if(dna._fitness > max_fitness) {
-                this._best = getPhrase(dna);
-                max_fitness = dna._fitness;
+            if(dna.getFitness() > max_fitness) {
+                this._best = dna;
+                max_fitness = dna.getFitness();
             }
 
-            if(dna._fitness >= this._perfect_score) {
+            if(this.generations >= this._max_generations) {
                 this._finished = true;
             }
         });
@@ -90,11 +88,26 @@ class Population extends Array
 
     getAverageFitness()
     {
-        return this.reduce((carry, dna) => carry + dna._fitness , 0) / this.length;
+        return this.reduce((carry, dna) => carry + Math.pow(dna.getFitness(), 1/4) , 0) / this.length;
+    }
+
+    getMutationRate()
+    {
+        return this._mutation_rate;
+    }
+
+    getCargo()
+    {
+        return this._cargo
     }
 
     isFinished()
     {
         return this._finished;
+    }
+
+    getBest()
+    {
+        return this._best?.toCargo(this._cargo);
     }
 }
