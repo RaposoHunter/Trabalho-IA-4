@@ -1,45 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritmo Genético</title>
-    <link rel="stylesheet" href="public/css/style.css">
-    <script src="app/Helpers.js"></script>
-    <script src="app/Cargo.js"></script>
-    <script src="app/DNA.js"></script>
-    <script src="app/Population.js"></script>
-</head>
-<body>
-    <noscript>É necessário habilitar a execução de JavaScript para o funcionamento desta página</noscript>
-    
-    <div id="base__container">
-        <div id="left__container">
-            <div>
-                <h3>Desenvolvido por:</h3>
-                <h4>Victor de Oliveria Martins Azevedo | 20190018746</h4>
-                <h4>Pedro Raposo Felix de Sousa | 20190004642</h4>
-            </div>
-            <div>
-                <div>
-                    Gerações testadas: <span id="statistics__total__generations">0</span>
-                </div>
-                <div>
-                    Aptidão média: <span id="statistics__average__fitness">0</span>
-                </div>
-                <div>
-                    Tamanho da população: <span id="statistics__total__population">0</span>
-                </div>
-                <div>
-                    Taxa de mutação: <span id="statistics__mutation__rate">0</span>
-                </div>
-            </div>
-        </div>
-        <div id="right__container">
-            <h5>Tentativas:</h5>
-        </div>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Algoritmo Genético</title>
+        <link rel="stylesheet" href="public/css/style.css" />
+        <script src="app/Helpers.js"></script>
+        <script src="app/Cargo.js"></script>
+        <script src="app/DNA.js"></script>
+        <script src="app/Population.js"></script>
+    </head>
+    <body>
+        <noscript
+            >É necessário habilitar a execução de JavaScript para o
+            funcionamento desta página</noscript
+        >
 
-    <script src="script.js"></script>
-</body>
+        <div id="base__container">
+            <div id="left__container">
+                <div>
+                    <h3>Desenvolvido por:</h3>
+                    <h4>Victor de Oliveria Martins Azevedo | 20190018746</h4>
+                    <h4>Pedro Raposo Felix de Sousa | 20190004642</h4>
+                </div>
+                <div id="start__game">
+                    <div class="input__group">
+                        <label for="max_generations"
+                            >N° máximo de gerações</label
+                        >
+                        <select id="max_generations">
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                            <option value="1500">1500</option>
+                            <option value="2000">2000</option>
+                            <option value="2500">2500</option>
+                            <option value="3000" selected>3000</option>
+                        </select>
+                    </div>
+                    <div class="input__group">
+                        <label for="mutation_rate">Taxa de mutação</label>
+                        <select id="mutation_rate">
+                            <option value="0.01" selected>0.01</option>
+                            <option value="0.02">0.02</option>
+                            <option value="0.03">0.03</option>
+                        </select>
+                    </div>
+                    <div class="input__group">
+                        <label for="population_size"
+                            >Tamanho da população</label
+                        >
+                        <select id="population_size">
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="150">150</option>
+                            <option value="200" selected>200</option>
+                            <option value="250">250</option>
+                            <option value="300">300</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button id="reset__game__button">Resetar</button>
+                        <button id="start__game__button">Iniciar</button>
+                    </div>
+                </div>
+                <div id="show__statistics" style="display: none">
+                    <div>
+                        Número de itens:
+                        <span>100</span>
+                    </div>
+                    <div>
+                        Massa máxima:
+                        <span>14000.00 Kg</span>
+                    </div>
+                    <div>
+                        Volume máximo:
+                        <span>17.63 m³</span>
+                    </div>
+                    <hr />
+                    <div>
+                        Gerações testadas:
+                        <span id="statistics__total__generations">0</span>
+                    </div>
+                    <div>
+                        Aptidão média:
+                        <span id="statistics__average__fitness">0</span>
+                    </div>
+                    <div>
+                        Tamanho da população:
+                        <span id="statistics__total__population">0</span>
+                    </div>
+                    <div>
+                        Taxa de mutação:
+                        <span id="statistics__mutation__rate">0</span>
+                    </div>
+                    <hr />
+                    <div>
+                        Total de items:
+                        <span id="statistics__items__total">Calculando...</span>
+                    </div>
+                    <div>
+                        Massa final:
+                        <span id="statistics__items__mass">Calculando...</span>
+                    </div>
+                    <div>
+                        Volume final:
+                        <span id="statistics__items__volume"
+                            >Calculando...</span
+                        >
+                    </div>
+                    <div class="text-center">
+                        <button id="back__button">Voltar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="right__container">
+                <h5>População final</h5>
+                <div id="final__result__container">
+                    <ul id="final__result__ul"></ul>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
 </html>
