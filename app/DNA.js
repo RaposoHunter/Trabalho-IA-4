@@ -22,16 +22,23 @@ class DNA extends Array {
             }
         });
 
+        // Quanto mais itens incluidos, maior a aptidão
         this._fitness = item_count / cargo.length;
 
+        // Combinações que ultrapassem o limite máximo de massa sofrem uma redução de 70% na aptidão
         if (total_mass > Cargo.MAX_MASS) {
             this._fitness *= Cargo.OVERMASS_PENALTY;
         }
 
+        // Combinações que ultrapassem o limite máximo de volume sofrem uma redução de 70% na aptidão
         if (total_volume > Cargo.MAX_VOLUME) {
             this._fitness *= Cargo.OVERVOLUME_PENALTY;
         }
 
+        // OBS.: A maior redução possível, caso ultrapasse ambos os limites, é de 91%
+
+        // Transforma a função de fitness em uma função exponencial para considerar valores mais altos
+        // como tendo um peso maior
         this._fitness = Math.pow(this._fitness, 4);
     }
 
@@ -61,6 +68,7 @@ class DNA extends Array {
     }
 
     toCargo(cargo) {
+        // Converte a encodificação do gene (genótipo) numa representação (fenótipo) a ser utilizada
         let list = [];
         let total_mass = 0;
         let total_volume = 0;

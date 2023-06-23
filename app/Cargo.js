@@ -1,9 +1,9 @@
 class Cargo {
-    static SIZE = 100;
+    static SIZE = 100; // unidades
     static MAX_MASS = 14000; // Kg
     static MAX_VOLUME = 17.63; // m³
-    static OVERMASS_PENALTY = 0.3;
-    static OVERVOLUME_PENALTY = 0.3;
+    static OVERMASS_PENALTY = 0.3; // %
+    static OVERVOLUME_PENALTY = 0.3; // %
 
     static generateCargo(item_count = null) {
         item_count ||= Cargo.SIZE;
