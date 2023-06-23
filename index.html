@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo Genético</title>
+    <link rel="stylesheet" href="public/css/style.css">
+    <script src="app/Helpers.js"></script>
+    <script src="app/DNA.js"></script>
+    <script src="app/Population.js"></script>
+</head>
+<body>
+    <noscript>É necessário habilitar a execução de JavaScript para o funcionamento desta página</noscript>
+    
+    <div id="base__container">
+        <div id="left__container">
+            <div>
+                <h3>Melhor tentativa:</h3>
+                <h3 id="statistics__best__phrase"></h3>
+            </div>
+            <div>
+                <div>
+                    Gerações testadas: <span id="statistics__total__generations">0</span>
+                </div>
+                <div>
+                    Aptidão média: <span id="statistics__average__fitness">0</span>
+                </div>
+                <div>
+                    Tamanho da população: <span id="statistics__total__population">0</span>
+                </div>
+                <div>
+                    Taxa de mutação: <span id="statistics__mutation__rate">0</span>
+                </div>
+            </div>
+        </div>
+        <div id="right__container">
+            <h5>Tentativas:</h5>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
