@@ -39,7 +39,7 @@ Todos os itens são exibidos em uma lista onde os selecionados pelo algoritmo s�
 * public/css/style.css - Responsável pela estilização dos elementos do algoritmo
 * script.js - Responsável pela execução do algoritmo com toda a lógica de programação
 * app/Cargo.js - Contém uma classe com o método estático responsável por gerar os itens a serem escolhidos, bem como as propriedades estáticas responsáveis pelos limites do sistema
-* app/DNA.js - Contém a classe responsável por codificar os cromossomos. Nela são encontrados os métodos responsáveis pelo <i>crossover</i>, muitação e a função para calcular o <i>fitness</i>
+* app/DNA.js - Contém a classe responsável por codificar os cromossomos. Nela são encontrados os métodos responsáveis pelo <i>crossover</i>, mutação e a função para calcular o <i>fitness</i>
 * app/Helpers.js - Contém algumas funções globais utilizadas dentro do algoritmo
 * app/Population.js - Contém a classe responsável por armazenar o conjunto de cromossomos (aqui chamados de "população"). Nela são encontrados os métodos responsáveis por realizar a seleção natural e realizar o cruzamento dos cromossomos.
 
